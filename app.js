@@ -4,6 +4,7 @@ var mongoose = require('mongoose')
 var config = require('./config')
 var setupController = require('./controllers/setupController')
 var apiController = require('./controllers/apiController')
+var Todo = require('./models/todoModel')
 
 var port = process.env.PORT || 3000
 
@@ -13,7 +14,11 @@ app.use('/vendor/angular', express.static(__dirname + '/node_modules/angular'))
 app.set('view engine', 'ejs')
 
 app.get('/', function(req, res) {
-    res.render('index')
+    Todo.find({}, function(err, todos) {
+        if (err) throw err
+        console.log(todos)
+        res.render('index', { todos: todos })
+    })
 })
 
 mongoose.connect(config.getDbConnectionStringLocalhost())

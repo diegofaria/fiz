@@ -1,10 +1,13 @@
-<html ng-app="TodoApp">
+<html>
     <head>
         <title>Todo list app</title>
-        <script src="/vendor/angular/angular.js"></script>
     </head>
     <body ng-controller="MainController as vm">
-        {{ vm.message }}
-        <script src="/assets/js/app.js"></script>
+        
+        <% todos.forEach(function(todo) { %>
+            <input type="checkbox" <% if (todo.isDone) {%> checked <% } %> >
+            <%= todo.todo %>
+            <br/>
+        <% }) %>
     </body>
 </html>
