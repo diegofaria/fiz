@@ -2,32 +2,68 @@
     <head>
         <title>Todo list app</title>
         <link rel="stylesheet" href="/vendor/bulma/bulma.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <body>
-        <section class="hero">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">
-                        Todo list App
-                    </h1>
-                    <h2 class="subtitle">
-                        all your activities to do.
-                    </h2>
-                </div>
+        <section class="section">
+            <div class="tabs">
+                <ul class="is-left">
+                    <li>
+                        <a>
+                            <span class="icon is-small"><i class="fa fa-plus"></i></span>
+                            <span>Create</span>
+                        </a>
+                    </li>
+                </ul>
+
+                <ul class="is-center">
+                    <li class="is-active"><a>All</a></li>
+                    <li><a>To do</a></li>
+                    <li><a>Done</a></li>
+                </ul>
+                <ul class="is-right">
+                </ul>
+            </div>
+
+        </div>
+        </section>
+        <section class="section">
+            <div class="container">
+                <p class="control">
+                    <input class="input is-large" type="text" placeholder="Large input">
+                </p>
             </div>
         </section>
-
         <section class="section">
             <div class="container is-fluid">
 
                 <% todos.forEach(function(todo) { %>
                     <div class="box">
-                        <input type="checkbox" <% if (todo.isDone) { %> checked <% } %> >
-                        <%= todo.todo %>
+                        <div>
+                            <input type="checkbox" <% if (todo.isDone) { %> checked <% } %> >
+                            <%= todo.todo %>
+                        </div>
+                        <div>
+                            <a class="button is-danger is-small is-inverted">Delete</a>
+                        </div>
                     </div>
+
                 <% }) %>
 
-            </div>          
+            </div>
         </section>
+        <footer class="footer">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                    </p>
+                    <p>
+                        <a class="icon" href="https://github.com/diegofaria">
+                            <i class="fa fa-github"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </footer>
     </body>
 </html>
