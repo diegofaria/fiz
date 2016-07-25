@@ -5,40 +5,12 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     </head>
     <body>
-        <section class="section">
-            <div class="tabs">
-                <ul class="is-left">
-                    <li>
-                        <a>
-                            <span class="icon is-small"><i class="fa fa-plus"></i></span>
-                            <span>Create</span>
-                        </a>
-                    </li>
-                </ul>
 
-                <ul class="is-center">
-                    <li class="is-active"><a>All</a></li>
-                    <li><a>To do</a></li>
-                    <li><a>Done</a></li>
-                </ul>
-                <ul class="is-right">
-                </ul>
-            </div>
-        </section>
-        <section class="section">
-            <div class="container">
-                <p class="control">
-                    <input class="input is-large" type="text" placeholder="Large input">
-                </p>
-            </div>
-        </section>
-        <section class="section">
-            <div class="container is-fluid">
+        <%- include('filters') %>
 
-                <%- include('todo-item', {todos: todos}) %>
+        <%- include('add-todo') %>
 
-            </div>
-        </section>
+        <%- include('todo-items') %>
 
         <%- include('footer') %>
 
