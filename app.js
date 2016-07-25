@@ -10,6 +10,7 @@ var port = process.env.PORT || 3000
 
 app.use('/assets', express.static(__dirname + '/public'))
 app.use('/vendor/bulma/', express.static(__dirname + '/node_modules/bulma/css'))
+app.use('/vendor/jquery/', express.static(__dirname + '/node_modules/jquery/dist'))
 
 app.set('view engine', 'ejs')
 
