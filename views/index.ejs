@@ -37,18 +37,7 @@
         <section class="section">
             <div class="container is-fluid">
 
-                <% todos.forEach(function(todo) { %>
-                    <div class="box">
-                        <div>
-                            <input type="checkbox" <% if (todo.isDone) { %> checked <% } %> >
-                            <%= todo.todo %>
-                        </div>
-                        <div>
-                            <a class="button is-danger is-small is-inverted">Delete</a>
-                        </div>
-                    </div>
-
-                <% }) %>
+                <%- include('todo-item', {todos: todos}) %>
 
             </div>
         </section>
