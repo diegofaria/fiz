@@ -1,4 +1,6 @@
-function SearchFilters() {
+var username = 'test'
+
+function TodosFilter() {
     this.buttons = {
         'all': $('.js-todo-filters-all'),
         'todo': $('.js-todo-filters-todo'),
@@ -7,27 +9,40 @@ function SearchFilters() {
     this.container = undefined
 }
 
-SearchFilters.prototype.all = function() {
+TodosFilter.prototype.getTodos = function(filters) {
+    var _this = this
+
+    $.get('/api/todos/', filters)
+    .done(function(data) {
+        _this.container.html(data)
+    })
+}
+
+TodosFilter.prototype.all = function() {
     this.buttons['all'].addClass('is-active')
     this.buttons['todo'].removeClass('is-active')
     this.buttons['done'].removeClass('is-active')
 
-    // this.container.load()
+    this.getTodos({ username: username })
 }
 
-SearchFilters.prototype.todo = function() {
+TodosFilter.prototype.todo = function() {
     this.buttons['todo'].addClass('is-active')
     this.buttons['all'].removeClass('is-active')
     this.buttons['done'].removeClass('is-active')
+
+    this.getTodos({ isDone: false, username: username})
 }
 
-SearchFilters.prototype.done = function() {
+TodosFilter.prototype.done = function() {
     this.buttons['done'].addClass('is-active')
     this.buttons['todo'].removeClass('is-active')
     this.buttons['all'].removeClass('is-active')
+
+    this.getTodos({ isDone: true, username: username})
 }
 
-SearchFilters.prototype.initializeBinds = function() {
+TodosFilter.prototype.initializeBinds = function() {
     var _this = this
 
     this.buttons['all'].click(function(){
@@ -43,10 +58,10 @@ SearchFilters.prototype.initializeBinds = function() {
     })
 }
 
-SearchFilters.prototype.init = function(containerClass) {
+TodosFilter.prototype.init = function(containerClass) {
     this.container = $(containerClass)
 
     this.initializeBinds()
 }
 
-var filters = new SearchFilters()
+var filters = new TodosFilter()

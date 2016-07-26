@@ -1,7 +1,5 @@
-<section class="section">
-    <div class="container is-fluid js-todos-container">
+<% todos.forEach(function(todo) { %>
 
-        <%- include('todo-item', {todos: todos}) %>
+    <%- include('todo-item', {todo: todo}) %>
 
-    </div>
-</section>
+<% }) %>

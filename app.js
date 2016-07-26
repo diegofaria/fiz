@@ -17,7 +17,7 @@ app.set('view engine', 'ejs')
 app.get('/', function(req, res) {
     Todo.find({}, function(err, todos) {
         if (err) throw err
-        console.log(todos)
+
         res.render('index', { todos: todos })
     })
 })
