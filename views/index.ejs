@@ -19,12 +19,14 @@
 
             </div>
         </section>
+        <script src="/assets/js/todo-list.js"></script>
 
         <%- include('footer') %>
 
         <script>
             $(function(){
                 filters.init('.js-todos-container')
+                todoList.init()
             })
         </script>
 
