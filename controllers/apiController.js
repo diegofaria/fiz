@@ -8,7 +8,7 @@ module.exports = function(app) {
     app.get('/api/todos', function(req, res) {
         Todos.find(req.query, function(err, todos) {
             if (err) throw err
-            res.render('todo-items', { todos: todos })
+            res.render('todo-list/todo-items', { todos: todos })
         })
     })
 
@@ -26,7 +26,7 @@ module.exports = function(app) {
         if (req.body.hasAttachment !== undefined) newTodo['hasAttachment'] = req.body.hasAttachment
 
         console.log(newTodo)
-        
+
         if (req.body.id){
             Todos.findByIdAndUpdate(
                 req.body.id,

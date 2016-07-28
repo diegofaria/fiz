@@ -7,16 +7,15 @@
     </head>
     <body>
 
-        <%- include('filters') %>
+        <%- include('todo-list/filters') %>
         <script src="/assets/js/filters.js"></script>
 
-        <%- include('add-todo') %>
+        <%- include('todo-list/todo-input') %>
+        <script src="/assets/js/todo-input.js"></script>
 
         <section class="section">
             <div class="container is-fluid js-todos-container">
-
-                <%- include('todo-items') %>
-
+                <%- include('todo-list/todo-items') %>
             </div>
         </section>
         <script src="/assets/js/todo-list.js"></script>
@@ -27,6 +26,7 @@
             $(function(){
                 filters.init('.js-todos-container')
                 todoList.init()
+                todoInput.init(todoList)
             })
         </script>
 
