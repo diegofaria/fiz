@@ -1,7 +1,7 @@
 function TodoList() {}
 
 TodoList.prototype.changeItemStatus = function(id, isDone) {
-    $.post('/api/todo', { id: id, isDone: isDone})
+    $.post('/api/todo', { id: id, isDone: isDone })
         .done(function() {
             console.log('checked')
         })
@@ -28,22 +28,17 @@ TodoList.prototype.deleteItem = function(id) {
 }
 
 TodoList.prototype.init = function() {
-    var todoItems = $('.js-todo-item').toArray()
-
     var _this = this
-    todoItems.forEach(function(item) {
-        var todoId = $(item).data('id')
 
-        var checkbox = $(item).find(':checkbox')[0]
-        $(checkbox).change(function() {
-            _this.changeItemStatus(todoId, $(this).is(':checked'))
-        })
-
-        var deleteButton = $(item).find('.button')[0]
-        $(deleteButton).click(function() {
-            _this.deleteItem(todoId)
-        })
-    })
+    var todoListContainer = $('.js-todos-container')
+    todoListContainer.on('change', ':checkbox', function(event) {
+        var todoId = $(this).closest('.js-todo-item').data('id')
+        _this.changeItemStatus(todoId, $(this).is(':checked'))
+    });
+    todoListContainer.on('click', '.js-delete-todo-button', function(event) {
+        var todoId = $(this).closest('.js-todo-item').data('id')
+        _this.deleteItem(todoId)
+    });
 
 }
 
