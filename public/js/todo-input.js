@@ -1,5 +1,6 @@
-function TodoInput() {
+function TodoInput(refreshList) {
     this.input = undefined
+    this.refreshList
 }
 
 TodoInput.prototype.addTodo = function(description) {
@@ -11,15 +12,12 @@ TodoInput.prototype.addTodo = function(description) {
         data: { todo: description }
     })
     .done(function() {
-        console.log("success");
         _this.input.val('')
+        _this.refreshList()
     })
     .fail(function(err) {
         console.log(err);
     })
-    .always(function() {
-        console.log("complete");
-    });
 
 }
 
