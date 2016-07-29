@@ -22,7 +22,7 @@ app.get('/', function(req, res) {
     })
 })
 
-mongoose.connect(config.getDbConnectionStringLocalhost())
+mongoose.connect(config.getDbConnectionString())
 setupController(app)
 apiController(app)
 
