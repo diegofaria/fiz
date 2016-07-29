@@ -6,13 +6,14 @@ function TodosFilter() {
         'todo': $('.js-todo-filters-todo'),
         'done': $('.js-todo-filters-done')
     }
+    this.filters = { username: undefined }
     this.container = undefined
 }
 
-TodosFilter.prototype.getTodos = function(filters) {
+TodosFilter.prototype.getTodos = function() {
     var _this = this
 
-    $.get('/api/todos/', filters)
+    $.get('/api/todos/', _this.filters)
     .done(function(data) {
         _this.container.html(data)
     })
@@ -23,7 +24,9 @@ TodosFilter.prototype.all = function() {
     this.buttons['todo'].removeClass('is-active')
     this.buttons['done'].removeClass('is-active')
 
-    this.getTodos({ username: username })
+    delete this.filters['isDone']
+
+    this.getTodos()
 }
 
 TodosFilter.prototype.todo = function() {
@@ -31,7 +34,9 @@ TodosFilter.prototype.todo = function() {
     this.buttons['all'].removeClass('is-active')
     this.buttons['done'].removeClass('is-active')
 
-    this.getTodos({ isDone: false, username: username})
+    this.filters['isDone'] = false
+
+    this.getTodos()
 }
 
 TodosFilter.prototype.done = function() {
@@ -39,7 +44,9 @@ TodosFilter.prototype.done = function() {
     this.buttons['todo'].removeClass('is-active')
     this.buttons['all'].removeClass('is-active')
 
-    this.getTodos({ isDone: true, username: username})
+    this.filters['isDone'] = true
+
+    this.getTodos()
 }
 
 TodosFilter.prototype.initializeBinds = function() {
@@ -60,7 +67,7 @@ TodosFilter.prototype.initializeBinds = function() {
 
 TodosFilter.prototype.init = function(containerClass) {
     this.container = $(containerClass)
-
+    this.filters.username = username
     this.initializeBinds()
 }
 

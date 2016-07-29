@@ -25,8 +25,11 @@
         <script>
             $(function(){
                 filters.init('.js-todos-container')
-                todoList.init()
-                todoInput.init(todoList)
+
+                var refreshList = function() { return filters.getTodos() }
+
+                todoList.init(refreshList)
+                todoInput.init(refreshList)
             })
         </script>
 

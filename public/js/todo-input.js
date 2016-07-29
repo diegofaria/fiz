@@ -1,6 +1,6 @@
-function TodoInput(refreshList) {
+function TodoInput() {
     this.input = undefined
-    this.refreshList
+    this.refreshList = undefined
 }
 
 TodoInput.prototype.addTodo = function(description) {
@@ -21,9 +21,11 @@ TodoInput.prototype.addTodo = function(description) {
 
 }
 
-TodoInput.prototype.init = function() {
+TodoInput.prototype.init = function(refreshListCallback) {
     var _this = this
+    
     _this.input = $('.js-todo-create-input')
+    _this.refreshList = refreshListCallback
 
     _this.input.keyup(function(event){
         if(event.keyCode == 13)
