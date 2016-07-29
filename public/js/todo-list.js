@@ -1,4 +1,6 @@
-function TodoList() {}
+function TodoList() {
+    this.refreshList = undefined
+}
 
 TodoList.prototype.changeItemStatus = function(id, isDone) {
     $.post('/api/todo', { id: id, isDone: isDone })
@@ -8,15 +10,15 @@ TodoList.prototype.changeItemStatus = function(id, isDone) {
 }
 
 TodoList.prototype.deleteItem = function(id) {
-
+    var _this = this
+    
     $.ajax({
         url: '/api/todo',
         type: 'DELETE',
-        dataType: 'json',
         data: { "id": id }
     })
     .done(function() {
-        console.log("success");
+        _this.refreshList()
     })
     .fail(function() {
         console.log("error");
@@ -27,8 +29,10 @@ TodoList.prototype.deleteItem = function(id) {
 
 }
 
-TodoList.prototype.init = function() {
+TodoList.prototype.init = function(refreshListCallback) {
     var _this = this
+
+    _this.refreshList = refreshListCallback
 
     var todoListContainer = $('.js-todos-container')
     todoListContainer.on('change', ':checkbox', function(event) {
