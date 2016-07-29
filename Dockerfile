@@ -1,4 +1,4 @@
-FROM node:argon
+FROM risingstack/alpine:3.3-v4.2.6-1.1.3
 
 # Create app directory
 RUN mkdir -p /usr/src/app
