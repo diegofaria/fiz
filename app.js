@@ -24,7 +24,7 @@ app.get('/', function(req, res) {
     })
 })
 
-mongoose.connect(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI || MONGOLAB_URI)
 setupController(app)
 apiController(app)
 
