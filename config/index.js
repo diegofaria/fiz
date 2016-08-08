@@ -1,4 +1,4 @@
-const config = {}
+var config = {}
 
 config.redisStore = {
   url: process.env.REDIS_STORE_URI,
