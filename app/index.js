@@ -39,6 +39,11 @@ app.get('/', function(req, res) {
     res.render('login')
 })
 
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/todos',
+    failureRedirect: '/'
+}))
+
 app.get('/todos', function(req, res) {
     Todo.find({}, function(err, todos) {
         if (err) throw err
