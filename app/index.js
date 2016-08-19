@@ -24,6 +24,8 @@ app.use('/assets', express.static(__dirname + '/public'))
 app.use('/vendor/bulma/', express.static(__dirname + '../../node_modules/bulma/css'))
 app.use('/vendor/jquery/', express.static(__dirname + '../../node_modules/jquery/dist'))
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
     store: new RedisStore({
@@ -43,6 +45,11 @@ app.post('/login', passport.authenticate('local', { successRedirect: '/',
                                                     failureRedirect: '/login',
                                                     failureFlash: true })
 )
+
+app.get('/logout', function(req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
 app.get('/',
     passport.authenticationMiddleware(),
